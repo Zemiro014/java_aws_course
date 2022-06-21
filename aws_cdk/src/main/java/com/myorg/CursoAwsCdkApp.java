@@ -10,7 +10,16 @@ public class CursoAwsCdkApp {
     public static void main(final String[] args) {
         App app = new App();
 
-        new VpcStack(app, "Vpc");
+        // VPC
+        VpcStack vpcStack = new VpcStack(app, "Vpc");
+
+        // CLUSTER
+        ClusterStack clusterStack = new ClusterStack(app, "Cluster", vpcStack.getVpc());
+        clusterStack.addDependency(vpcStack);
+
+        // TASK
+        ServiceParaAwsProjeto01Stack serviceParaAwsProjeto01Stack = new ServiceParaAwsProjeto01Stack(app, "Service01", clusterStack.getCluster());
+        serviceParaAwsProjeto01Stack.addDependency(clusterStack);
 
         app.synth();
     }

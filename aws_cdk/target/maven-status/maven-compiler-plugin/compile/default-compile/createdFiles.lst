@@ -1,3 +1,5 @@
 com/myorg/VpcStack.class
 com/myorg/CursoAwsCdkStack.class
+com/myorg/ServiceParaAwsProjeto01Stack.class
 com/myorg/CursoAwsCdkApp.class
+com/myorg/ClusterStack.class

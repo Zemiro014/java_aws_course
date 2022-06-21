@@ -657,6 +657,48 @@
    ]
   }
  },
+ "Outputs": {
+  "ExportsOutputRefVpc01PublicSubnet1Subnet52644D7B09B79E25": {
+   "Value": {
+    "Ref": "Vpc01PublicSubnet1Subnet52644D7B"
+   },
+   "Export": {
+    "Name": "Vpc:ExportsOutputRefVpc01PublicSubnet1Subnet52644D7B09B79E25"
+   }
+  },
+  "ExportsOutputRefVpc01PublicSubnet2Subnet7A06BCF487C69B65": {
+   "Value": {
+    "Ref": "Vpc01PublicSubnet2Subnet7A06BCF4"
+   },
+   "Export": {
+    "Name": "Vpc:ExportsOutputRefVpc01PublicSubnet2Subnet7A06BCF487C69B65"
+   }
+  },
+  "ExportsOutputRefVpc01F824461A2A0E15F5": {
+   "Value": {
+    "Ref": "Vpc01F824461A"
+   },
+   "Export": {
+    "Name": "Vpc:ExportsOutputRefVpc01F824461A2A0E15F5"
+   }
+  },
+  "ExportsOutputRefVpc01PrivateSubnet1SubnetAA8F14B1D2DB62B8": {
+   "Value": {
+    "Ref": "Vpc01PrivateSubnet1SubnetAA8F14B1"
+   },
+   "Export": {
+    "Name": "Vpc:ExportsOutputRefVpc01PrivateSubnet1SubnetAA8F14B1D2DB62B8"
+   }
+  },
+  "ExportsOutputRefVpc01PrivateSubnet2SubnetAF389DF0CA6B8B79": {
+   "Value": {
+    "Ref": "Vpc01PrivateSubnet2SubnetAF389DF0"
+   },
+   "Export": {
+    "Name": "Vpc:ExportsOutputRefVpc01PrivateSubnet2SubnetAF389DF0CA6B8B79"
+   }
+  }
+ },
  "Parameters": {
   "BootstrapVersion": {
    "Type": "AWS::SSM::Parameter::Value<String>",

@@ -1,3 +1,5 @@
-/home/jeronimo/Documentos/udemy/ms_java_aws/micro_service_aws_java/aws_cdk/src/main/java/com/myorg/VpcStack.java
-/home/jeronimo/Documentos/udemy/ms_java_aws/micro_service_aws_java/aws_cdk/src/main/java/com/myorg/CursoAwsCdkApp.java
-/home/jeronimo/Documentos/udemy/ms_java_aws/micro_service_aws_java/aws_cdk/src/main/java/com/myorg/CursoAwsCdkStack.java
+/home/jeronimo/Documentos/udemy/ms_java_aws/java_aws_course/aws_cdk/src/main/java/com/myorg/CursoAwsCdkApp.java
+/home/jeronimo/Documentos/udemy/ms_java_aws/java_aws_course/aws_cdk/src/main/java/com/myorg/VpcStack.java
+/home/jeronimo/Documentos/udemy/ms_java_aws/java_aws_course/aws_cdk/src/main/java/com/myorg/ClusterStack.java
+/home/jeronimo/Documentos/udemy/ms_java_aws/java_aws_course/aws_cdk/src/main/java/com/myorg/CursoAwsCdkStack.java
+/home/jeronimo/Documentos/udemy/ms_java_aws/java_aws_course/aws_cdk/src/main/java/com/myorg/ServiceParaAwsProjeto01Stack.java
