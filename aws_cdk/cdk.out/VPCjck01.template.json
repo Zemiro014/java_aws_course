@@ -1,0 +1,694 @@
+{
+ "Resources": {
+  "VPCjckE51FFA38": {
+   "Type": "AWS::EC2::VPC",
+   "Properties": {
+    "CidrBlock": "10.0.0.0/16",
+    "EnableDnsHostnames": true,
+    "EnableDnsSupport": true,
+    "InstanceTenancy": "default",
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "VPCjck01/VPCjck"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "VPCjck01/VPCjck/Resource"
+   }
+  },
+  "VPCjckPublicSubnet1SubnetB777A45F": {
+   "Type": "AWS::EC2::Subnet",
+   "Properties": {
+    "VpcId": {
+     "Ref": "VPCjckE51FFA38"
+    },
+    "AvailabilityZone": {
+     "Fn::Select": [
+      0,
+      {
+       "Fn::GetAZs": ""
+      }
+     ]
+    },
+    "CidrBlock": "10.0.0.0/18",
+    "MapPublicIpOnLaunch": true,
+    "Tags": [
+     {
+      "Key": "aws-cdk:subnet-name",
+      "Value": "Public"
+     },
+     {
+      "Key": "aws-cdk:subnet-type",
+      "Value": "Public"
+     },
+     {
+      "Key": "Name",
+      "Value": "VPCjck01/VPCjck/PublicSubnet1"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "VPCjck01/VPCjck/PublicSubnet1/Subnet"
+   }
+  },
+  "VPCjckPublicSubnet1RouteTable8BA23E54": {
+   "Type": "AWS::EC2::RouteTable",
+   "Properties": {
+    "VpcId": {
+     "Ref": "VPCjckE51FFA38"
+    },
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "VPCjck01/VPCjck/PublicSubnet1"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "VPCjck01/VPCjck/PublicSubnet1/RouteTable"
+   }
+  },
+  "VPCjckPublicSubnet1RouteTableAssociation73A7C3BA": {
+   "Type": "AWS::EC2::SubnetRouteTableAssociation",
+   "Properties": {
+    "RouteTableId": {
+     "Ref": "VPCjckPublicSubnet1RouteTable8BA23E54"
+    },
+    "SubnetId": {
+     "Ref": "VPCjckPublicSubnet1SubnetB777A45F"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "VPCjck01/VPCjck/PublicSubnet1/RouteTableAssociation"
+   }
+  },
+  "VPCjckPublicSubnet1DefaultRoute707B8248": {
+   "Type": "AWS::EC2::Route",
+   "Properties": {
+    "RouteTableId": {
+     "Ref": "VPCjckPublicSubnet1RouteTable8BA23E54"
+    },
+    "DestinationCidrBlock": "0.0.0.0/0",
+    "GatewayId": {
+     "Ref": "VPCjckIGWDAE1C8FB"
+    }
+   },
+   "DependsOn": [
+    "VPCjckVPCGWD3631850"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "VPCjck01/VPCjck/PublicSubnet1/DefaultRoute"
+   }
+  },
+  "VPCjckPublicSubnet1EIPFB0C087A": {
+   "Type": "AWS::EC2::EIP",
+   "Properties": {
+    "Domain": "vpc",
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "VPCjck01/VPCjck/PublicSubnet1"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "VPCjck01/VPCjck/PublicSubnet1/EIP"
+   }
+  },
+  "VPCjckPublicSubnet1NATGateway297A3A6C": {
+   "Type": "AWS::EC2::NatGateway",
+   "Properties": {
+    "SubnetId": {
+     "Ref": "VPCjckPublicSubnet1SubnetB777A45F"
+    },
+    "AllocationId": {
+     "Fn::GetAtt": [
+      "VPCjckPublicSubnet1EIPFB0C087A",
+      "AllocationId"
+     ]
+    },
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "VPCjck01/VPCjck/PublicSubnet1"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "VPCjck01/VPCjck/PublicSubnet1/NATGateway"
+   }
+  },
+  "VPCjckPublicSubnet2Subnet50B797BC": {
+   "Type": "AWS::EC2::Subnet",
+   "Properties": {
+    "VpcId": {
+     "Ref": "VPCjckE51FFA38"
+    },
+    "AvailabilityZone": {
+     "Fn::Select": [
+      1,
+      {
+       "Fn::GetAZs": ""
+      }
+     ]
+    },
+    "CidrBlock": "10.0.64.0/18",
+    "MapPublicIpOnLaunch": true,
+    "Tags": [
+     {
+      "Key": "aws-cdk:subnet-name",
+      "Value": "Public"
+     },
+     {
+      "Key": "aws-cdk:subnet-type",
+      "Value": "Public"
+     },
+     {
+      "Key": "Name",
+      "Value": "VPCjck01/VPCjck/PublicSubnet2"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "VPCjck01/VPCjck/PublicSubnet2/Subnet"
+   }
+  },
+  "VPCjckPublicSubnet2RouteTableB2F02B8D": {
+   "Type": "AWS::EC2::RouteTable",
+   "Properties": {
+    "VpcId": {
+     "Ref": "VPCjckE51FFA38"
+    },
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "VPCjck01/VPCjck/PublicSubnet2"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "VPCjck01/VPCjck/PublicSubnet2/RouteTable"
+   }
+  },
+  "VPCjckPublicSubnet2RouteTableAssociationD8195FCE": {
+   "Type": "AWS::EC2::SubnetRouteTableAssociation",
+   "Properties": {
+    "RouteTableId": {
+     "Ref": "VPCjckPublicSubnet2RouteTableB2F02B8D"
+    },
+    "SubnetId": {
+     "Ref": "VPCjckPublicSubnet2Subnet50B797BC"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "VPCjck01/VPCjck/PublicSubnet2/RouteTableAssociation"
+   }
+  },
+  "VPCjckPublicSubnet2DefaultRoute6EBF0181": {
+   "Type": "AWS::EC2::Route",
+   "Properties": {
+    "RouteTableId": {
+     "Ref": "VPCjckPublicSubnet2RouteTableB2F02B8D"
+    },
+    "DestinationCidrBlock": "0.0.0.0/0",
+    "GatewayId": {
+     "Ref": "VPCjckIGWDAE1C8FB"
+    }
+   },
+   "DependsOn": [
+    "VPCjckVPCGWD3631850"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "VPCjck01/VPCjck/PublicSubnet2/DefaultRoute"
+   }
+  },
+  "VPCjckPublicSubnet2EIP698FCF6E": {
+   "Type": "AWS::EC2::EIP",
+   "Properties": {
+    "Domain": "vpc",
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "VPCjck01/VPCjck/PublicSubnet2"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "VPCjck01/VPCjck/PublicSubnet2/EIP"
+   }
+  },
+  "VPCjckPublicSubnet2NATGateway654AC085": {
+   "Type": "AWS::EC2::NatGateway",
+   "Properties": {
+    "SubnetId": {
+     "Ref": "VPCjckPublicSubnet2Subnet50B797BC"
+    },
+    "AllocationId": {
+     "Fn::GetAtt": [
+      "VPCjckPublicSubnet2EIP698FCF6E",
+      "AllocationId"
+     ]
+    },
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "VPCjck01/VPCjck/PublicSubnet2"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "VPCjck01/VPCjck/PublicSubnet2/NATGateway"
+   }
+  },
+  "VPCjckPrivateSubnet1Subnet3BC0021F": {
+   "Type": "AWS::EC2::Subnet",
+   "Properties": {
+    "VpcId": {
+     "Ref": "VPCjckE51FFA38"
+    },
+    "AvailabilityZone": {
+     "Fn::Select": [
+      0,
+      {
+       "Fn::GetAZs": ""
+      }
+     ]
+    },
+    "CidrBlock": "10.0.128.0/18",
+    "MapPublicIpOnLaunch": false,
+    "Tags": [
+     {
+      "Key": "aws-cdk:subnet-name",
+      "Value": "Private"
+     },
+     {
+      "Key": "aws-cdk:subnet-type",
+      "Value": "Private"
+     },
+     {
+      "Key": "Name",
+      "Value": "VPCjck01/VPCjck/PrivateSubnet1"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "VPCjck01/VPCjck/PrivateSubnet1/Subnet"
+   }
+  },
+  "VPCjckPrivateSubnet1RouteTable3C1EF5A8": {
+   "Type": "AWS::EC2::RouteTable",
+   "Properties": {
+    "VpcId": {
+     "Ref": "VPCjckE51FFA38"
+    },
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "VPCjck01/VPCjck/PrivateSubnet1"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "VPCjck01/VPCjck/PrivateSubnet1/RouteTable"
+   }
+  },
+  "VPCjckPrivateSubnet1RouteTableAssociation95F3D15F": {
+   "Type": "AWS::EC2::SubnetRouteTableAssociation",
+   "Properties": {
+    "RouteTableId": {
+     "Ref": "VPCjckPrivateSubnet1RouteTable3C1EF5A8"
+    },
+    "SubnetId": {
+     "Ref": "VPCjckPrivateSubnet1Subnet3BC0021F"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "VPCjck01/VPCjck/PrivateSubnet1/RouteTableAssociation"
+   }
+  },
+  "VPCjckPrivateSubnet1DefaultRouteBF0BC99E": {
+   "Type": "AWS::EC2::Route",
+   "Properties": {
+    "RouteTableId": {
+     "Ref": "VPCjckPrivateSubnet1RouteTable3C1EF5A8"
+    },
+    "DestinationCidrBlock": "0.0.0.0/0",
+    "NatGatewayId": {
+     "Ref": "VPCjckPublicSubnet1NATGateway297A3A6C"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "VPCjck01/VPCjck/PrivateSubnet1/DefaultRoute"
+   }
+  },
+  "VPCjckPrivateSubnet2Subnet28397B31": {
+   "Type": "AWS::EC2::Subnet",
+   "Properties": {
+    "VpcId": {
+     "Ref": "VPCjckE51FFA38"
+    },
+    "AvailabilityZone": {
+     "Fn::Select": [
+      1,
+      {
+       "Fn::GetAZs": ""
+      }
+     ]
+    },
+    "CidrBlock": "10.0.192.0/18",
+    "MapPublicIpOnLaunch": false,
+    "Tags": [
+     {
+      "Key": "aws-cdk:subnet-name",
+      "Value": "Private"
+     },
+     {
+      "Key": "aws-cdk:subnet-type",
+      "Value": "Private"
+     },
+     {
+      "Key": "Name",
+      "Value": "VPCjck01/VPCjck/PrivateSubnet2"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "VPCjck01/VPCjck/PrivateSubnet2/Subnet"
+   }
+  },
+  "VPCjckPrivateSubnet2RouteTableEEB400C3": {
+   "Type": "AWS::EC2::RouteTable",
+   "Properties": {
+    "VpcId": {
+     "Ref": "VPCjckE51FFA38"
+    },
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "VPCjck01/VPCjck/PrivateSubnet2"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "VPCjck01/VPCjck/PrivateSubnet2/RouteTable"
+   }
+  },
+  "VPCjckPrivateSubnet2RouteTableAssociationDC0A1455": {
+   "Type": "AWS::EC2::SubnetRouteTableAssociation",
+   "Properties": {
+    "RouteTableId": {
+     "Ref": "VPCjckPrivateSubnet2RouteTableEEB400C3"
+    },
+    "SubnetId": {
+     "Ref": "VPCjckPrivateSubnet2Subnet28397B31"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "VPCjck01/VPCjck/PrivateSubnet2/RouteTableAssociation"
+   }
+  },
+  "VPCjckPrivateSubnet2DefaultRouteED0B12EA": {
+   "Type": "AWS::EC2::Route",
+   "Properties": {
+    "RouteTableId": {
+     "Ref": "VPCjckPrivateSubnet2RouteTableEEB400C3"
+    },
+    "DestinationCidrBlock": "0.0.0.0/0",
+    "NatGatewayId": {
+     "Ref": "VPCjckPublicSubnet2NATGateway654AC085"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "VPCjck01/VPCjck/PrivateSubnet2/DefaultRoute"
+   }
+  },
+  "VPCjckIGWDAE1C8FB": {
+   "Type": "AWS::EC2::InternetGateway",
+   "Properties": {
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "VPCjck01/VPCjck"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "VPCjck01/VPCjck/IGW"
+   }
+  },
+  "VPCjckVPCGWD3631850": {
+   "Type": "AWS::EC2::VPCGatewayAttachment",
+   "Properties": {
+    "VpcId": {
+     "Ref": "VPCjckE51FFA38"
+    },
+    "InternetGatewayId": {
+     "Ref": "VPCjckIGWDAE1C8FB"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "VPCjck01/VPCjck/VPCGW"
+   }
+  },
+  "CDKMetadata": {
+   "Type": "AWS::CDK::Metadata",
+   "Properties": {
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/02OzQrCMBCEn8V7Gk1PXksR0YOUKl5lE1dcWxNpNhUpfXdb/+Jpvh2G2UllOpdqAnefmGOV1KRlt2UwlRisA5pUdvubEfnJ7otcFEHXZLZBW+TRi1S6wLgDXWP0o5d57wwBk7O/8AiLVTHKBngJjHd4iKKhdsBYvLKMzcDfwHvJ58p4mHq+ouVelOhdaMyr959zZ480fu7FGlqYKiVnUqnJxRMlTbBMV5TlW585bCMzDgEAAA=="
+   },
+   "Metadata": {
+    "aws:cdk:path": "VPCjck01/CDKMetadata/Default"
+   },
+   "Condition": "CDKMetadataAvailable"
+  }
+ },
+ "Conditions": {
+  "CDKMetadataAvailable": {
+   "Fn::Or": [
+    {
+     "Fn::Or": [
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "af-south-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-east-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-northeast-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-northeast-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-south-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-southeast-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-southeast-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ca-central-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "cn-north-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "cn-northwest-1"
+       ]
+      }
+     ]
+    },
+    {
+     "Fn::Or": [
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-central-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-north-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-south-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-west-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-west-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-west-3"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "me-south-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "sa-east-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "us-east-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "us-east-2"
+       ]
+      }
+     ]
+    },
+    {
+     "Fn::Or": [
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "us-west-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "us-west-2"
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ },
+ "Parameters": {
+  "BootstrapVersion": {
+   "Type": "AWS::SSM::Parameter::Value<String>",
+   "Default": "/cdk-bootstrap/hnb659fds/version",
+   "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]"
+  }
+ },
+ "Rules": {
+  "CheckBootstrapVersion": {
+   "Assertions": [
+    {
+     "Assert": {
+      "Fn::Not": [
+       {
+        "Fn::Contains": [
+         [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+         ],
+         {
+          "Ref": "BootstrapVersion"
+         }
+        ]
+       }
+      ]
+     },
+     "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI."
+    }
+   ]
+  }
+ }
+}
