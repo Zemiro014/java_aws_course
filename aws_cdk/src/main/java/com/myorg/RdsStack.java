@@ -28,7 +28,7 @@ public class RdsStack extends Stack {
                 .create(this, "Rds01")
                 .instanceIdentifier("aws-project01-db")
                 .engine(DatabaseInstanceEngine.mysql(MySqlInstanceEngineProps.builder()
-                        .version(MysqlEngineVersion.VER_5_7)
+                        .version(MysqlEngineVersion.VER_8_0_28)
                         .build()))
                 .vpc(vpc)
                 .credentials(Credentials.fromUsername("admin",

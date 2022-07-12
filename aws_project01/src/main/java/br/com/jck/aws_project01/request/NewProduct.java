@@ -11,7 +11,7 @@ public class NewProduct implements Serializable {
     @Column(length = 24, nullable = false)
     private String model;
 
-    @Column(length = 8, nullable = false)
+    @Column(length = 24, nullable = false)
     private String code;
 
     private float price;

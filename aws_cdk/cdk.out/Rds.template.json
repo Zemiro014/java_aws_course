@@ -55,7 +55,7 @@
      "Ref": "Rds01SubnetGroup7C0866B6"
     },
     "Engine": "mysql",
-    "EngineVersion": "5.7",
+    "EngineVersion": "8.0.28",
     "MasterUsername": "admin",
     "MasterUserPassword": {
      "Ref": "databasePassword"

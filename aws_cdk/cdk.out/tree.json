@@ -920,7 +920,7 @@
                       "Ref": "Rds01SubnetGroup7C0866B6"
                     },
                     "engine": "mysql",
-                    "engineVersion": "5.7",
+                    "engineVersion": "8.0.28",
                     "masterUsername": "admin",
                     "masterUserPassword": {
                       "Ref": "databasePassword"
@@ -1279,7 +1279,7 @@
                         "containerDefinitions": [
                           {
                             "essential": true,
-                            "image": "zemiro/curso_aws_project01:1.2.2-SNAPSHOT",
+                            "image": "zemiro/curso_aws_project01:1.2.3-SNAPSHOT",
                             "name": "aws_projeto01_container",
                             "portMappings": [
                               {

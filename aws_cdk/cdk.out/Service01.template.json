@@ -188,7 +188,7 @@
        }
       ],
       "Essential": true,
-      "Image": "zemiro/curso_aws_project01:1.2.2-SNAPSHOT",
+      "Image": "zemiro/curso_aws_project01:1.2.3-SNAPSHOT",
       "LogConfiguration": {
        "LogDriver": "awslogs",
        "Options": {

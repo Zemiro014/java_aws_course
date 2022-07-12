@@ -38,7 +38,7 @@ public class ServiceParaAwsProjeto01Stack extends Stack {
                 .taskImageOptions( // Definição da task (contendo a imagem da aplicação rodando em um container desponibilizando os logs)
                         ApplicationLoadBalancedTaskImageOptions.builder() // Especificação do container e da image
                                 .containerName("aws_projeto01_container")
-                                .image(ContainerImage.fromRegistry("zemiro/curso_aws_project01:1.2.2-SNAPSHOT"))
+                                .image(ContainerImage.fromRegistry("zemiro/curso_aws_project01:1.2.3-SNAPSHOT"))
                                 .containerPort(8080)
                                 .logDriver(LogDriver.awsLogs(AwsLogDriverProps.builder() // Expecificando os Logs
                                                 .logGroup(LogGroup.Builder.create(this, "Service01LogGroup")
