@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>br.com.jck</groupId>
 	<artifactId>aws_project01</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.2.2-SNAPSHOT</version>
 	<name>aws_project01</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
@@ -21,7 +21,16 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.mariadb.jdbc/mariadb-java-client -->
+		<dependency>
+			<groupId>org.mariadb.jdbc</groupId>
+			<artifactId>mariadb-java-client</artifactId>
+			<version>2.5.2</version>
+		</dependency>
 		<!--O Actuatto nos fornece um EndPoiont que nos dirá se a aplicação está executando ou não-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

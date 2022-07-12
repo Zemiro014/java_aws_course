@@ -1,9 +1,6 @@
 package com.myorg;
 
-import software.amazon.awscdk.Duration;
-import software.amazon.awscdk.RemovalPolicy;
-import software.amazon.awscdk.Stack;
-import software.amazon.awscdk.StackProps;
+import software.amazon.awscdk.*;
 import software.amazon.awscdk.services.applicationautoscaling.EnableScalingProps;
 import software.amazon.awscdk.services.ecs.*;
 import software.amazon.awscdk.services.ecs.patterns.ApplicationLoadBalancedFargateService;
@@ -12,6 +9,9 @@ import software.amazon.awscdk.services.elasticloadbalancingv2.HealthCheck;
 import software.amazon.awscdk.services.logs.LogGroup;
 import software.constructs.Construct;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class ServiceParaAwsProjeto01Stack extends Stack {
     public ServiceParaAwsProjeto01Stack(final Construct scope, final String id, Cluster cluster) {
         this(scope, id, null, cluster);
@@ -19,6 +19,12 @@ public class ServiceParaAwsProjeto01Stack extends Stack {
 
     public ServiceParaAwsProjeto01Stack(final Construct scope, final String id, final StackProps props, Cluster cluster) {
         super(scope, id, props);
+
+        Map<String, String> envVariables = new HashMap<>();
+        envVariables.put("SPRING_DATASOURCE_URL", "jdbc:mariadb://" + Fn.importValue("rds-endpoint")
+                + ":3306/aws_project01?createDatabaseIfNotExist=true");
+        envVariables.put("SPRING_DATASOURCE_USERNAME", "admin");
+        envVariables.put("SPRING_DATASOURCE_PASSWORD", Fn.importValue("rds-password"));
 
         ApplicationLoadBalancedFargateService service01 = ApplicationLoadBalancedFargateService
                 .Builder
@@ -32,7 +38,7 @@ public class ServiceParaAwsProjeto01Stack extends Stack {
                 .taskImageOptions( // Definição da task (contendo a imagem da aplicação rodando em um container desponibilizando os logs)
                         ApplicationLoadBalancedTaskImageOptions.builder() // Especificação do container e da image
                                 .containerName("aws_projeto01_container")
-                                .image(ContainerImage.fromRegistry("zemiro/curso_aws_project01:0.0.1-SNAPSHOT"))
+                                .image(ContainerImage.fromRegistry("zemiro/curso_aws_project01:1.2.2-SNAPSHOT"))
                                 .containerPort(8080)
                                 .logDriver(LogDriver.awsLogs(AwsLogDriverProps.builder() // Expecificando os Logs
                                                 .logGroup(LogGroup.Builder.create(this, "Service01LogGroup")
@@ -41,6 +47,7 @@ public class ServiceParaAwsProjeto01Stack extends Stack {
                                                         .build())
                                                 .streamPrefix("Service01")
                                         .build()))
+                                .environment(envVariables)
                                 .build())
                 .publicLoadBalancer(true) // Tornando o LoadBalancer público. Teremos um DNS definido aqui que nos permitirá acesssar a aplicação
                 .build();
