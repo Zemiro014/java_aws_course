@@ -7,6 +7,7 @@ import com.amazonaws.regions.Regions;
 import com.amazonaws.services.sns.AmazonSNS;
 import com.amazonaws.services.sns.AmazonSNSClient;
 import com.amazonaws.services.sns.AmazonSNSClientBuilder;
+import com.amazonaws.services.sns.model.CreateTopicRequest;
 import com.amazonaws.services.sns.model.Topic;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,25 +20,29 @@ import org.springframework.context.annotation.Profile;
 public class CreatingLocallySns {
 
     private static final Logger LOG = LoggerFactory.getLogger(CreatingLocallySns.class);
-    private final String productEventsTopic;
-    private final AmazonSNS snsClient;
-
-    public CreatingLocallySns(){
-        this.snsClient = AmazonSNSClient.builder()
-                .withEndpointConfiguration(new AwsClientBuilder
-                        .EndpointConfiguration("http://localhost:4566",
-                        Regions.US_EAST_1.getName()))
-                .withCredentials(new DefaultAWSCredentialsProviderChain())
-                .build();
-    }
-
-    @Bean
-    public AmazonSNS snsClient() {
-        return this.snsClient;
-    }
-
-    @Bean(name = "productEventsTopic")
-    public Topic snsProductEventsTopic() {
-        return new Topic().withTopicArn(productEventsTopic);
-    }
+//    private final String productEventsTopic;
+//    private final AmazonSNS snsClient;
+//
+//    public CreatingLocallySns(){
+//        this.snsClient = AmazonSNSClient.builder()
+//                .withEndpointConfiguration(new AwsClientBuilder
+//                        .EndpointConfiguration("http://localhost:4566",
+//                        Regions.US_EAST_1.getName()))
+//                .withCredentials(new DefaultAWSCredentialsProviderChain())
+//                .build();
+//
+//        CreateTopicRequest createTopicRequest = new CreateTopicRequest("product-event");
+//        this.productEventsTopic = this.snsClient.createTopic(createTopicRequest).getTopicArn();
+//        LOG.info("SNS topic ARN: {}", this.productEventsTopic );
+//    }
+//
+//    @Bean
+//    public AmazonSNS snsClient() {
+//        return this.snsClient;
+//    }
+//
+//    @Bean(name = "productEventsTopic")
+//    public Topic snsProductEventsTopic() {
+//        return new Topic().withTopicArn(productEventsTopic);
+//    }
 }
