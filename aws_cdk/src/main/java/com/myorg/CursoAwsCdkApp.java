@@ -21,7 +21,8 @@ public class CursoAwsCdkApp {
         RdsStack rdsStack = new RdsStack(app, "Rds", vpcStack.getVpc());
         rdsStack.addDependency(vpcStack);
 
-        // TASK
+        SnsStack snsStack = new SnsStack(app, "Sns");
+        // TASK - Service
         ServiceParaAwsProjeto01Stack serviceParaAwsProjeto01Stack = new ServiceParaAwsProjeto01Stack(app, "Service01", clusterStack.getCluster());
         serviceParaAwsProjeto01Stack.addDependency(clusterStack);
         serviceParaAwsProjeto01Stack.addDependency(rdsStack);

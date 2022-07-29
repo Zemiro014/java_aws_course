@@ -1,9 +1,11 @@
 package br.com.jck.aws_project01.controller;
 
+import br.com.jck.aws_project01.enums.EventType;
 import br.com.jck.aws_project01.model.Product;
 import br.com.jck.aws_project01.repository.ProductRepository;
 import br.com.jck.aws_project01.request.NewProduct;
 import br.com.jck.aws_project01.request.UpdateProduct;
+import br.com.jck.aws_project01.service.ProductSnsPublisher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,10 +18,12 @@ import java.util.Optional;
 public class ProductController {
 
     private ProductRepository productRepository;
+    private ProductSnsPublisher productSnsPublisher;
 
     @Autowired
-    public ProductController(ProductRepository productRepository){
+    public ProductController(ProductRepository productRepository, ProductSnsPublisher productSnsPublisher){
         this.productRepository = productRepository;
+        this.productSnsPublisher = productSnsPublisher;
     }
 
     @GetMapping
@@ -45,6 +49,7 @@ public class ProductController {
         entity.setModel(newProduct.getModel());
         entity.setPrice(newProduct.getPrice());
         entity = productRepository.save(entity);
+        productSnsPublisher.publishProductEvent(entity, EventType.PRODUCT_CREATED, "João");
         return new ResponseEntity<Product>(entity, HttpStatus.CREATED);
     }
 
@@ -58,6 +63,7 @@ public class ProductController {
         if(productRepository.existsById(id)){
             entity.setId(id);
             Product productUpdated = productRepository.save(entity);
+            productSnsPublisher.publishProductEvent(productUpdated, EventType.PRODUCT_UPDATE, "Izadora");
             return new ResponseEntity<Product>(productUpdated, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -70,6 +76,7 @@ public class ProductController {
         if (optionalProduct.isPresent()){
             Product product = optionalProduct.get();
             productRepository.delete(product);
+            productSnsPublisher.publishProductEvent(product, EventType.PRODUCT_UPDATE, "Martinha");
             return new ResponseEntity<Product>(product, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
